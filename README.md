@@ -1,40 +1,34 @@
-📢 Notification Management System (Backend Only)
+# 📢 Notification Management System (Backend Only)
 
-The Notification Management System is a backend service that facilitates notification delivery to users. It ensures critical and non-critical notifications are delivered based on the recipient's availability.
+The **Notification Management System** is a backend service that facilitates notification delivery to users. It ensures critical and non-critical notifications are delivered based on the recipient's availability.
 
-🚀 Features
+## 🚀 Features
 
-🔹 Admin Capabilities
+### 🔹 Admin Capabilities
+- Send notifications to one or multiple users.
+- Classify notifications as:
+  - **Critical Notifications** → Delivered immediately, regardless of recipient availability.
+  - **Non-Critical Notifications** → Delivered only when the recipient is available.
 
-Send notifications to one or multiple users.
+### 🔹 User Capabilities
+- Send notifications to one or multiple users.
+- Notifications are sent based on user availability:
+  - ✅ **Available** → Instant delivery.
+  - ❌ **Unavailable** → Queued and sent once the user becomes available.
 
-Classify notifications as:
+## 🧐 Technologies Used
 
-Critical Notifications → Delivered immediately, regardless of recipient availability.
+| Technology       | Description             |
+|-----------------|-------------------------|
+| **Backend**     | Node.js, Express.js     |
+| **Database**    | MongoDB (Mongoose)      |
+| **Authentication** | JSON Web Tokens (JWT) |
+| **Scheduling**  | Node-Cron               |
 
-Non-Critical Notifications → Delivered only when the recipient is available.
+## 📂 Project Structure
 
-🔹 User Capabilities
-
-Send notifications to one or multiple users.
-
-Notifications are sent based on user availability:
-
-✅ Available → Instant delivery.
-
-❌ Unavailable → Queued and sent once the user becomes available.
-
-
-
-🛠 Technologies Used
-Technology	Description
-Backend	Node.js, Express.js
-Database	MongoDB (Mongoose)
-Authentication	JSON Web Tokens (JWT)
-Scheduling	Node-Cron
-
-📂 Project Structure
-user-management-system/
+```plaintext
+notification-management-system/
 ├── config/
 │   └── database.js
 ├── controllers/
@@ -58,86 +52,109 @@ user-management-system/
 ├── index.js
 ├── package.json
 └── README.md
+```
 
+## ✅ Register a New User
 
-✅ Register a New User
+**Endpoint:** `POST /auth/signup`
 
-Endpoint: POST /auth/signup
+**Request Body:**
 
-Request Body:
-
-{ 
-    "name":"saurav",
-    "email":"saurav@gmail.com",
-    "password":"1234",
-    "role":"Admin"
-}
-Response:
-
+```json
 {
-  {
-    "message": "account is created",
+    "name": "saurav",
+    "email": "saurav@gmail.com",
+    "password": "1234",
+    "role": "Admin"
+}
+```
+
+**Response:**
+
+```json
+{
+    "message": "Account is created",
     "success": true
- }
 }
+```
 
-✅ User Login
-Endpoint: POST /uauth/login
+## ✅ User Login
 
-Request Body:
+**Endpoint:** `POST /auth/login`
+
+**Request Body:**
+
+```json
 {
-  "email":"saurav@gmail.com",
-    "password":"1234",
-    "role":"Admin"
+    "email": "saurav@gmail.com",
+    "password": "1234",
+    "role": "Admin"
 }
-Response:
+```
+
+**Response:**
+
+```json
 {
-   "message": "login sucess",
+    "message": "Login success",
     "success": true,
     "email": "saurav@gmail.com",
-    "name": "saurav"
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+    "name": "saurav",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
+```
 
-🔧 Profile Management (Protected Route - Requires Token)
-✅ Update Profile
-Endpoint: PUT /profile/updateProfile
+## 🔧 Profile Management (Protected Route - Requires Token)
 
-Request Body:
+### ✅ Update Profile
+
+**Endpoint:** `PUT /profile/updateProfile`
+
+**Request Body:**
+
+```json
 {
-      "availabilityTime":[
+    "availabilityTime": [
         {
-           "start": "13:00", 
-           "end": "14:00"
+            "start": "13:00",
+            "end": "14:00"
         }
     ]
 }
+```
 
+## 📢 Notification Management (Protected Route - Requires Token)
 
-📢 Notification Management (Protected Route - Requires Token)
-✅ Create Notifications
-Endpoint: POST /notification/sendNotification
+### ✅ Create Notifications
 
-Request Body:
+**Endpoint:** `POST /notification/sendNotification`
 
+**Request Body:**
+
+```json
 {
-  "recipientIds":[  
-            "679f7de93eeba7d3d64726f6" ,
-            "679eac17a2b2f7d4df33de6f"
+    "recipientIds": [  
+        "679f7de93eeba7d3d64726f6",
+        "679eac17a2b2f7d4df33de6f"
     ],
-    "message":"Admin send data to all the users",
-    "type":"Non-Critical"
+    "message": "Admin sent data to all the users",
+    "type": "Non-Critical"
 }
+```
 
-⏳ Notification Scheduler
-Runs every 30 seconds to check pending notifications.
-Critical Notifications → Printed immediately on the console.
-Non-Critical Notifications → Delivered based on the recipient's availability.
+## ⏳ Notification Scheduler
+- Runs **every 30 seconds** to check pending notifications.
+- **Critical Notifications** → Printed immediately on the console.
+- **Non-Critical Notifications** → Delivered based on the recipient's availability.
 
-I have already created an admin
+## 🔓 Default Admin Account
+
+```json
 {
-  "name":"saurav",
-    "email":"saurav@gmail.com",
-    "password":"1234",
-    "role":"Admin"
-}#
+    "name": "saurav",
+    "email": "saurav@gmail.com",
+    "password": "1234",
+    "role": "Admin"
+}
+```
+
