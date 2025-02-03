@@ -5,53 +5,55 @@ The **Notification Management System** is a backend service that facilitates not
 ## 🚀 Features
 
 ### 🔹 Admin Capabilities
+
 - Send notifications to one or multiple users.
 - Classify notifications as:
   - **Critical Notifications** → Delivered immediately, regardless of recipient availability.
   - **Non-Critical Notifications** → Delivered only when the recipient is available.
 
 ### 🔹 User Capabilities
+
 - Send notifications to one or multiple users.
 - Notifications are sent based on user availability:
   - ✅ **Available** → Instant delivery.
   - ❌ **Unavailable** → Queued and sent once the user becomes available.
 
-## 🧐 Technologies Used
+## 🤔 Technologies Used
 
-| Technology       | Description             |
-|-----------------|-------------------------|
-| **Backend**     | Node.js, Express.js     |
-| **Database**    | MongoDB (Mongoose)      |
+| Technology         | Description           |
+| ------------------ | --------------------- |
+| **Backend**        | Node.js, Express.js   |
+| **Database**       | MongoDB (Mongoose)    |
 | **Authentication** | JSON Web Tokens (JWT) |
-| **Scheduling**  | Node-Cron               |
+| **Scheduling**     | Node-Cron             |
 
-## 📂 Project Structure
+## 💂‍♂️ Project Structure
 
 ```plaintext
-notification-management-system/
-├── config/
-│   └── database.js
-├── controllers/
-│   ├── ProfileController.js
-│   ├── SendNotification.js
-│   ├── UserAuthController.js
-├── middleware/
-│   └── Authentication.js
-├── models/
-│   ├── db.js
-│   ├── Notification.js
-│   ├── UserAdmin.js
-│   ├── UserProfile.js
-├── routes/
-│   ├── AuthRouter.js
-│   ├── NotificationRouter.js
-├── utils/
-│   ├── notificationScheduler.js
-│   ├── checkAvailability.js
-├── .gitignore
-├── index.js
-├── package.json
-└── README.md
+user-management-system/
+├─ config/
+│   └─ database.js
+├─ controllers/
+│   ├─ ProfileController.js
+│   ├─ SendNotification.js
+│   └─ UserAuthController.js
+├─ middleware/
+│   └─ Authentication.js
+├─ models/
+│   ├─ db.js
+│   ├─ Notification.js
+│   ├─ UserAdmin.js
+│   └─ UserProfile.js
+├─ routes/
+│   ├─ AuthRouter.js
+│   └─ NotificationRouter.js
+├─ utils/
+│   ├─ notificationScheduler.js
+│   └─ checkAvailability.js
+├─ .gitignore
+├─ index.js
+├─ package.json
+└─ README.md
 ```
 
 ## ✅ Register a New User
@@ -106,6 +108,26 @@ notification-management-system/
 
 ## 🔧 Profile Management (Protected Route - Requires Token)
 
+### ✅ Register Profile
+
+**Endpoint:** `POST /profile/registerProfile`
+
+**Request Body:**
+
+```json
+{
+   "name": "saurav",
+   "mobileNo": 12345670,
+   "bio": "Friend",
+   "availabilityTime": [
+       {
+           "start": "09:00",
+           "end": "12:00"
+       }
+   ]
+}
+```
+
 ### ✅ Update Profile
 
 **Endpoint:** `PUT /profile/updateProfile`
@@ -143,11 +165,12 @@ notification-management-system/
 ```
 
 ## ⏳ Notification Scheduler
+
 - Runs **every 30 seconds** to check pending notifications.
 - **Critical Notifications** → Printed immediately on the console.
 - **Non-Critical Notifications** → Delivered based on the recipient's availability.
 
-## 🔓 Default Admin Account
+## 🔒 Default Admin Account
 
 ```json
 {
