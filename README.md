@@ -31,8 +31,6 @@ The **Notification Management System** is a backend service that facilitates not
 
 ```plaintext
 user-management-system/
-├─ config/
-│   └─ database.js
 ├─ controllers/
 │   ├─ ProfileController.js
 │   ├─ SendNotification.js
